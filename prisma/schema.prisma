@@ -18,6 +18,7 @@ model User {
   username  String   @unique
   email     String   @unique
   password  String
+  isActive  Boolean  @default(true)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -27,11 +28,12 @@ model User {
 }
 
 model Board {
-  id        String   @id @default(uuid())
-  name      String
+  id          String   @id @default(uuid())
+  name        String
+  slug        String   @unique
   description String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
   lists     List[]
   labels    Label[]

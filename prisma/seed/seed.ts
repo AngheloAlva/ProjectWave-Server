@@ -7,9 +7,9 @@ async function main() {
 	await prisma.label.deleteMany()
 	await prisma.card.deleteMany()
 	await prisma.list.deleteMany()
-	await prisma.board.deleteMany()
 	await prisma.role.deleteMany()
 	await prisma.user.deleteMany()
+	await prisma.board.deleteMany()
 
 	const user1 = await prisma.user.create({
 		data: {
@@ -30,6 +30,7 @@ async function main() {
 	const board1 = await prisma.board.create({
 		data: {
 			name: "Board 1",
+			slug: "board-1",
 			description: "Board 1 description",
 			users: {
 				connect: {
@@ -42,6 +43,7 @@ async function main() {
 	const board2 = await prisma.board.create({
 		data: {
 			name: "Board 2",
+			slug: "board-2",
 			description: "Board 2 description",
 			users: {
 				connect: {
@@ -76,7 +78,7 @@ async function main() {
 		data: {
 			name: "Card 1",
 			description: "Card 1 description",
-			dueDate: new Date('2024-09-01T00:00:00.000Z'),
+			dueDate: new Date("2024-09-01T00:00:00.000Z"),
 			listId: list1.id,
 		},
 	})
@@ -85,7 +87,7 @@ async function main() {
 		data: {
 			name: "Card 2",
 			description: "Card 2 description",
-			dueDate: new Date('2024-09-01T00:00:00.000Z'),
+			dueDate: new Date("2024-09-01T00:00:00.000Z"),
 			listId: list1.id,
 		},
 	})
@@ -94,7 +96,7 @@ async function main() {
 		data: {
 			name: "Card 3",
 			description: "Card 3 description",
-			dueDate: new Date('2024-09-01T00:00:00.000Z'),
+			dueDate: new Date("2024-09-01T00:00:00.000Z"),
 			listId: list2.id,
 		},
 	})
@@ -103,7 +105,7 @@ async function main() {
 		data: {
 			name: "Card 4",
 			description: "Card 4 description",
-			dueDate: new Date('2024-09-01T00:00:00.000Z'),
+			dueDate: new Date("2024-09-01T00:00:00.000Z"),
 			listId: list3.id,
 		},
 	})
@@ -117,7 +119,7 @@ async function main() {
 				connect: {
 					id: card1.id,
 				},
-			}
+			},
 		},
 	})
 
