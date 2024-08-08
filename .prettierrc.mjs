@@ -10,18 +10,11 @@ export default {
 	useTabs: true,
 	endOfLine: "lf",
 	arrowParens: "always",
-	plugins: ["prettier-plugin-tailwindcss"],
 	overrides: [
 		{
 			files: ["*.json", "*.md", "*.toml", "*.yml"],
 			options: {
 				useTabs: false,
-			},
-		},
-		{
-			files: "*.tsx",
-			options: {
-				parser: "typescript",
 			},
 		},
 	],
