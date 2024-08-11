@@ -22,6 +22,7 @@ export class Server {
 
 	private configure(): void {
 		this.app.use(express.json())
+		this.app.set("trust proxy", true)
 		this.app.use(express.urlencoded({ extended: true }))
 		this.app.use(cors({ origin: envs.CLIENT_URL, credentials: true }))
 	}
