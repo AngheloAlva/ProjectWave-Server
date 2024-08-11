@@ -1,6 +1,7 @@
 import { prisma } from "../../domain/prisma"
 import { createSlug } from "../../helpers/createSlug"
 import { CustomError } from "../../domain/errors/custom-error"
+import { verifyBoardBySlugExists } from "../../helpers/verify-models/board.helpers"
 
 import type { Board } from "@prisma/client"
 import type { CreateBoard, CreateBoardWithListAndCards, UpdateBoard } from "../../interfaces/board"
@@ -12,6 +13,8 @@ export class BoardService {
 	}: CreateBoard): Promise<{ message: string; board: Board }> {
 		try {
 			const slug = createSlug(name)
+
+			verifyBoardBySlugExists(slug)
 
 			const newBoard = await prisma.board.create({
 				data: {
@@ -37,6 +40,8 @@ export class BoardService {
 	}: CreateBoardWithListAndCards): Promise<{ message: string; board: Board }> {
 		try {
 			const slug = createSlug(name)
+
+			verifyBoardBySlugExists(slug)
 
 			const newBoard = await prisma.board.create({
 				data: {
@@ -127,6 +132,10 @@ export class BoardService {
 					description,
 				},
 			})
+
+			if (updatedBoard == null) {
+				throw CustomError.notFound("Board not found")
+			}
 
 			return {
 				board: updatedBoard,
