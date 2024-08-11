@@ -14,7 +14,7 @@ export class BoardService {
 		try {
 			const slug = createSlug(name)
 
-			verifyBoardBySlugExists(slug)
+			await verifyBoardBySlugExists(slug)
 
 			const newBoard = await prisma.board.create({
 				data: {
@@ -41,7 +41,7 @@ export class BoardService {
 		try {
 			const slug = createSlug(name)
 
-			verifyBoardBySlugExists(slug)
+			await verifyBoardBySlugExists(slug)
 
 			const newBoard = await prisma.board.create({
 				data: {
